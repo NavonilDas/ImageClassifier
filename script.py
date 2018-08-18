@@ -26,9 +26,13 @@ def import_files():
     training_data = []
     testing_data = []
     # DAISY ===> Label = 1
+    # for each daisy image
     for dsy in daisy_files:
+        # convert that image into a grayscale
         img = cv2.imread('.' + daisy + '/' + dsy ,cv2.IMREAD_GRAYSCALE)
+        # resize the image
         img = cv2.resize(img,(SIZE,SIZE))
+        # Add the image as an array with a label 1 in all data
         all_data.append([np.array(img),1])
     
     # ROSES ===> Label = 2
@@ -38,9 +42,15 @@ def import_files():
         all_data.append([np.array(img),2])
     
     random.shuffle(all_data)
-    train_count = int(len(all_data) * RATIO)
+    length  = len(all_data)
+    train_count = int(length * RATIO)
     training_data = all_data[:train_count]
     testing_data = all_data[train_count:]
+    ############# MESSAGES ##########
+    print("TOTAL LENGTH OF DATA : ",length)
+    print("RATIO OF DIVIDING DATA : ",(RATIO*100))
+    print("TOTAL LENGTH OF TRAINING DATA : ",train_count)
+    print("TOTAL LENGTH OF TESTING DATA : ",(length - train_count))
     return training_data,testing_data
 
 # print(os.getcwd())

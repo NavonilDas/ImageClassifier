@@ -1,3 +1,2 @@
-*.jpg
-*.png
-*.jpeg
+flowers/daisy/*.jpg
+flowers/roses/*.jpg
